@@ -1,19 +1,19 @@
-﻿using Microsoft.Ajax.Utilities;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
-using System.Security.Authentication;
 using System.Web.Http;
 
 namespace n01653378assignment2.Controllers
 {
     public class J3Controller : ApiController
     {
+
         /// <summary>
-        /// Recieves a series of words and outputs the minimum number of seconds required to type it, stops reading input when "halt" is entered
+        /// recieves a series of words and outputs the number of seconds it takes to type it with the exception of "halt"
         /// </summary>
+        /// <param name="Text">represents string input</param>
         /// <returns>
         ///     GET api/route/J3/Messaging/a/dada/bob/abba/cell/www/halt -> 
         ///     1
@@ -25,10 +25,10 @@ namespace n01653378assignment2.Controllers
         /// </returns>
 
         [HttpGet]
-        [Route("api/route/J3/Messaging/")]
-        public IEnumerable<int> Get()
+        [Route("api/route/J3/Text")]
+        public IEnumerable<int> Get(string Text)
         {
-            List<char, int> Keys = new List<char, int>();
+            List<char, string> Keys = new List<char, string>();
             {
                 Keys.Add("a", "2"); Keys.Add("b", "22"); Keys.Add("c", "222");
                 Keys.Add("d", "3"); Keys.Add("e", "33"); Keys.Add("f", "333");
@@ -40,11 +40,14 @@ namespace n01653378assignment2.Controllers
                 Keys.Add("v", "888"); Keys.Add("w", "9"); Keys.Add("x", "99");
                 Keys.Add("y", "999"); Keys.Add("z", "9999");
 
-                    string word = "";
-                int second = 0;
-                char letter = "";
+                int pauseSconds = 2;
+                int seconds = 0;
 
-                for (int i = 0; i < N; i++)
+                foreach (char letter in Keys)
+                {
+                    seconds = seconds + pauseSconds;
+                }
+                return new int[] {seconds};
             }
         }
     }

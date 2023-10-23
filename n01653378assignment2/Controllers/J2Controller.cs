@@ -17,57 +17,57 @@ namespace n01653378assignment2.Controllers
         /// <summary>
         /// Recieves number of peppers and pepper names, outputs total spiciness
         /// </summary>
+        /// <param name="N">the number of peppers</param>
         /// <returns>
         ///     GET api/route/J2/Pepper/4/Poblano/Cayenne/Thai/Poblano -> 118000
         /// </returns>
 
 
         [HttpGet]
-        [Route("api/J2/Peppers/{N}")]
-        public string Peppers()
+        [Route("api/J2/Peppers/{N}/{*pepperInput}")]
+        public string Peppers(int N)
         {
-            int T = 0;
-            int N = 0;
-            string pepperInput = "";
-
             int Poblano = 1500;
             int Mirasol = 6000;
             int Serrano = 15500;
             int Cayenne = 40000;
             int Thai = 75000;
             int Habanero = 125000;
+            int T = 0;
+            string pepperInput = "";
 
-            for (int i = 0; i < N; i++)
-            {
-                int SHU = 0;
-
-                switch (pepperInput)
+                if (pepperInput == "Poblano") 
                 {
-                    case "Poblano":
-                        SHU = Poblano;
-                        break;
-                    case "Mirasol":
-                        SHU = Mirasol;
-                        break;
-                    case "Serrano":
-                        SHU = Serrano;
-                        break;
-                    case "Cayenne":
-                        SHU = Cayenne;
-                        break;
-                    case "Thai":
-                        SHU = Thai;
-                        break;
-                    case "Habanero":
-                        SHU = Habanero;
-                        break;
+                    T += Poblano;
                 }
-                T = T + SHU;
+                else if (pepperInput == "Mirasol")
+                {
+                    T += Mirasol;
+                }
+                else if (pepperInput == "Serrano")
+                {
+                    T += Serrano;
+                }
+                else if (pepperInput == "Cayenne")
+                {
+                    T += Cayenne;
+                }
+                else if (pepperInput == "Thai")
+                {
+                    T += Thai;
+                }
+                else if (pepperInput == "Habanero")
+                {
+                    T += Habanero;
+                }
+
+            T = T + pepperInput;
+
+                    return T;
+
+                }
             }
-            return T;
 
         }
-    }
-}
 
     
